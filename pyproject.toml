@@ -1,0 +1,35 @@
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "SIM", # flake8-simplify
+    "DJ",  # flake8-django
+]
+ignore = [
+    "DJ001",  # sometimes we need save() without update_fields
+]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+plugins = ["mypy_django_plugin.main"]
+# django-stubs будет искать settings.py через переменную окружения DJANGO_SETTINGS_MODULE,
+# но мы можем явно указать через параметры плагина.
+# В новых версиях django-stubs использует [tool.django-stubs].
+[tool.django-stubs]
+django_settings_module = "src.config.settings"
+
+# Игнорируем недостающие типы для внешних библиотек,
+# чтобы mypy не ругался на отсутствие stubs
+[[tool.mypy.overrides]]
+module = ["django.*", "rest_framework.*", "environ.*"]
+ignore_missing_imports = true
