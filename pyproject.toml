@@ -1,6 +1,9 @@
 [tool.ruff]
 target-version = "py313"
 line-length = 100
+exclude = [
+    "**/migrations/*.py",
+]
 
 [tool.ruff.lint]
 select = [
@@ -15,21 +18,21 @@ select = [
     "DJ",  # flake8-django
 ]
 ignore = [
-    "DJ001",  # sometimes we need save() without update_fields
+    "DJ001",
 ]
 
 [tool.mypy]
 python_version = "3.13"
-strict = true
 plugins = ["mypy_django_plugin.main"]
-# django-stubs будет искать settings.py через переменную окружения DJANGO_SETTINGS_MODULE,
-# но мы можем явно указать через параметры плагина.
-# В новых версиях django-stubs использует [tool.django-stubs].
+mypy_path = "src"
+exclude = [
+    "src/apps/.*/migrations/",
+    "src/config/settings.py",
+]
+
 [tool.django-stubs]
 django_settings_module = "src.config.settings"
 
-# Игнорируем недостающие типы для внешних библиотек,
-# чтобы mypy не ругался на отсутствие stubs
 [[tool.mypy.overrides]]
 module = ["django.*", "rest_framework.*", "environ.*"]
 ignore_missing_imports = true

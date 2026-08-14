@@ -1,10 +1,8 @@
-import sys
 from pathlib import Path
 
 import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(BASE_DIR))
 
 env = environ.Env()
 environ.Env.read_env(BASE_DIR.parent / ".env")
@@ -21,6 +19,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "apps.users",
+    "apps.gifts",
+    "apps.tasks",
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,8 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
+
+AUTH_USER_MODEL = "users.User"
 
 LANGUAGE_CODE = "ru-ru"
 TIME_ZONE = "Europe/Moscow"
