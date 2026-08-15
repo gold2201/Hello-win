@@ -28,4 +28,6 @@ repos:
           - psycopg[binary]==3.2.3
           - django-stubs==6.1.0
           - djangorestframework-stubs==3.18.0
+          - djangorestframework-simplejwt
+          - drf_spectacular
         args: [--config-file=pyproject.toml]
