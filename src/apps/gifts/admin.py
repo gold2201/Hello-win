@@ -5,9 +5,17 @@ from .models import Gift, GiftPurchase
 
 @admin.register(Gift)
 class GiftAdmin(admin.ModelAdmin):
-    list_display = ("name", "price", "required_spins", "quantity", "is_active", "created_at")
-    list_filter = ("is_active", "required_spins")
-    search_fields = ("name", "description")
+    list_display = (
+        "name",
+        "user",
+        "price",
+        "required_spins",
+        "quantity",
+        "is_active",
+        "created_at",
+    )
+    list_filter = ("is_active", "required_spins", "user")
+    search_fields = ("name", "description", "user__username")
     list_editable = (
         "price",
         "required_spins",

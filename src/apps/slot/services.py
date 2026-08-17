@@ -19,7 +19,7 @@ SYMBOLS: list[SymbolConfig] = [
     {"symbol": "🍋", "weight": 25, "multipliers": {3: Decimal("2.5"), 4: Decimal("10.0")}},
     {"symbol": "🔔", "weight": 20, "multipliers": {3: Decimal("3.0"), 4: Decimal("12.0")}},
     {"symbol": "💎", "weight": 15, "multipliers": {3: Decimal("5.0"), 4: Decimal("20.0")}},
-    {"symbol": "7️⃣", "weight": 10, "multipliers": {3: Decimal("7.0"), 4: Decimal("30.0")}},
+    {"symbol": "7️", "weight": 10, "multipliers": {3: Decimal("7.0"), 4: Decimal("30.0")}},
 ]
 
 TWO_IN_ROW_MULTIPLIER = Decimal("0.5")
@@ -71,7 +71,6 @@ def calculate_win(matrix: list[list[str]], bet: int) -> dict[str, Any]:
     total_win_decimal = Decimal("0")
     total_multiplier = Decimal("0")
 
-    # Горизонтали
     for row_idx, row in enumerate(matrix):
         runs = _find_runs(row)
         for symbol, length, start_idx in runs:
@@ -91,7 +90,6 @@ def calculate_win(matrix: list[list[str]], bet: int) -> dict[str, Any]:
             total_win_decimal += win_decimal
             total_multiplier += multiplier
 
-    # Вертикали
     for col_idx in range(4):
         column = [matrix[row_idx][col_idx] for row_idx in range(4)]
         runs = _find_runs(column)
