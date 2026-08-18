@@ -10,4 +10,5 @@ urlpatterns = [
     path("api/slot/", include("apps.slot.urls")),
     path("api/user/", include("apps.users.urls")),
     path("api/gifts/", include("apps.gifts.urls")),
+    path("api/tasks/", include("apps.tasks.urls")),
 ]

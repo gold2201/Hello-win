@@ -34,5 +34,5 @@ exclude = [
 django_settings_module = "src.config.settings"
 
 [[tool.mypy.overrides]]
-module = ["django.*", "rest_framework.*", "environ.*"]
+module = ["django.*", "rest_framework.*", "environ.*", "channels.*"]
 ignore_missing_imports = true

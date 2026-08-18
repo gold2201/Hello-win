@@ -30,4 +30,5 @@ repos:
           - djangorestframework-stubs==3.18.0
           - djangorestframework-simplejwt
           - drf_spectacular
+          - daphne
         args: [--config-file=pyproject.toml]

@@ -109,7 +109,7 @@ class SlotServiceTests(APITestCase):
 
         self.assertEqual(result["win_amount"], 3)
         self.assertEqual(result["balance"], 100 - 5 + 3)
-        self.assertEqual(result["total_win_multiplier"], Decimal("0.60"))  # 3/5
+        self.assertEqual(result["total_win_multiplier"], Decimal("0.60"))
 
 
 class SlotAPITests(APITestCase):
@@ -126,7 +126,7 @@ class SlotAPITests(APITestCase):
         self.assertEqual(response.data["username"], "apiuser")
         self.assertEqual(response.data["balance"], 100)
         self.assertEqual(response.data["total_spins"], 0)
-        self.assertEqual(response.data["bet_options"], [5, 10, 25, 50, 100])  # из сериализатора
+        self.assertEqual(response.data["bet_options"], [5, 10, 25, 50, 100])
 
     def test_spin_success(self):
         url = reverse("slot_spin")
