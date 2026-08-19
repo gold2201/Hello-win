@@ -5,6 +5,12 @@ from src.apps.users.models import User
 
 
 class Gift(BaseActiveModel):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="gifts",
+        verbose_name="Владелец",
+    )
     name = models.CharField(max_length=200, verbose_name="Название")
     description = models.TextField(blank=True, verbose_name="Описание")
     price = models.PositiveIntegerField(default=0, verbose_name="Цена в монетах")
