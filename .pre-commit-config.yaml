@@ -31,4 +31,5 @@ repos:
           - djangorestframework-simplejwt
           - drf_spectacular
           - daphne
+          - django-cors-headers
         args: [--config-file=pyproject.toml]
