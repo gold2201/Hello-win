@@ -5,6 +5,7 @@ import api from '../api';
 function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -14,13 +15,13 @@ function LoginPage() {
     setError('');
     setLoading(true);
     try {
-      const response = await api.post('api/auth/login/', {
+      const response = await api.post('auth/login/', {
         username,
         password,
       });
       localStorage.setItem('access_token', response.data.access);
       localStorage.setItem('refresh_token', response.data.refresh);
-      navigate('/');
+      navigate('/profile');
     } catch (err) {
       if (err.response) {
         setError('Неверный логин или пароль');
@@ -33,14 +34,22 @@ function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 via-white to-pink-200 p-4">
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-pink-100 via-white to-purple-100 flex items-center justify-center p-4">
+      {/* Плавающие эмодзи */}
+      <div className="pointer-events-none absolute inset-0 select-none">
+        <span className="absolute top-20 left-20 text-4xl opacity-30 animate-float">💖</span>
+        <span className="absolute top-1/4 right-32 text-5xl opacity-30 animate-float-delay">🎰</span>
+        <span className="absolute bottom-1/3 left-32 text-4xl opacity-20 animate-float">✨</span>
+        <span className="absolute bottom-20 right-20 text-3xl opacity-30 animate-float-delay">🍒</span>
+      </div>
+
       <form
         onSubmit={handleSubmit}
-        className="bg-white/80 backdrop-blur-lg p-8 rounded-3xl shadow-xl w-full max-w-md border border-pink-200"
+        className={`bg-white/80 backdrop-blur-lg p-8 rounded-3xl shadow-xl w-full max-w-md border border-pink-200 ${error ? 'animate-shake' : 'animate-fade-in-up'}`}
       >
         <div className="text-center mb-8">
-          <div className="text-5xl mb-2">💖</div>
-          <h1 className="text-3xl font-bold text-pink-500">Hello Win</h1>
+          <div className="text-5xl mb-2 animate-bounce-slow">💖</div>
+          <h1 className="text-3xl font-extrabold text-pink-500">Hello Win</h1>
           <p className="text-pink-400 mt-1">Вход</p>
         </div>
 
@@ -59,25 +68,35 @@ function LoginPage() {
             className="w-full border border-pink-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-pink-50/50 text-gray-800"
             placeholder="Введи ник"
             required
+            autoFocus
           />
         </div>
 
         <div className="mb-6">
           <label className="block text-pink-600 font-medium mb-1">Пароль</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full border border-pink-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-pink-50/50 text-gray-800"
-            placeholder="Введи пароль"
-            required
-          />
+          <div className="relative">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full border border-pink-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-pink-50/50 text-gray-800 pr-12"
+              placeholder="Введи пароль"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-pink-400 hover:text-pink-600"
+            >
+              {showPassword ? '🙈' : '👁️'}
+            </button>
+          </div>
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-pink-500 hover:bg-pink-600 disabled:opacity-50 text-white py-3 rounded-xl font-semibold transition-all shadow-md hover:shadow-lg"
+          className="w-full bg-pink-500 hover:bg-pink-600 disabled:opacity-50 text-white py-3 rounded-xl font-bold transition-all shadow-md hover:shadow-lg animate-pulse-soft"
         >
           {loading ? 'Входим...' : 'Войти'}
         </button>
