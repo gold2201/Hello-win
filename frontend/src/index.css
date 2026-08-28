@@ -71,3 +71,62 @@ body {
 .animate-shake {
   animation: shake 0.5s ease-in-out;
 }
+
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 0.3s ease-in-out infinite;
+}
+
+/* Вращение символов внутри ячеек */
+@keyframes reel-spin {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+.animate-reel-spin {
+  animation: reel-spin 0.4s linear infinite;
+}
+
+/* Конфетти при выигрыше */
+@keyframes confetti-fall {
+  0% { transform: translateY(-100%) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+.confetti {
+  position: fixed;
+  top: -10px;
+  width: 10px;
+  height: 10px;
+  background: #ff69b4;
+  animation: confetti-fall 2s linear forwards;
+  pointer-events: none;
+}
+
+/* Градиентный текст для заголовка */
+@keyframes gradient-text {
+  0% { color: #ff69b4; }
+  50% { color: #ff1493; }
+  100% { color: #ff69b4; }
+}
+
+.animate-gradient-text {
+  animation: gradient-text 3s ease-in-out infinite;
+}
+
+/* Усиленный эффект при крупном выигрыше */
+@keyframes big-win-glow {
+  0% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.7); }
+  50% { box-shadow: 0 0 30px 15px rgba(255, 105, 180, 0.4); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.7); }
+}
+
+.animate-big-win {
+  animation: big-win-glow 1s ease-in-out infinite;
+}

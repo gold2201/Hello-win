@@ -1,6 +1,15 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../api';
+import coin from "../assets/homePageImage/coin.png";
+import spins from "../assets/homePageImage/spins.png";
+import tasks from "../assets/homePageImage/tasks.png";
+import gift from "../assets/homePageImage/gift.png";
+import cherry from "../assets/slot/cherry.png";
+import diamond from "../assets/slot/diamond.png";
+import nearName from "../assets/homePageImage/nearName.png";
+import showPasswordIcon from '../assets/authPage/showPassword.png';
+import hidePasswordIcon from '../assets/authPage/hidePassword.png';
 
 function RegisterPage() {
   const [username, setUsername] = useState('');
@@ -49,12 +58,16 @@ function RegisterPage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-pink-100 via-white to-purple-100 flex items-center justify-center p-4">
-      {/* Плавающие эмодзи */}
+      {/* Плавающие картинки */}
       <div className="pointer-events-none absolute inset-0 select-none">
-        <span className="absolute top-20 right-20 text-4xl opacity-30 animate-float">🎁</span>
-        <span className="absolute top-1/3 left-24 text-5xl opacity-30 animate-float-delay">💝</span>
-        <span className="absolute bottom-1/4 right-32 text-4xl opacity-20 animate-float">✨</span>
-        <span className="absolute bottom-20 left-20 text-3xl opacity-30 animate-float-delay">🎀</span>
+        <img src={coin} alt="Монеты" className="absolute top-[120px] left-[100px] w-24 h-24 opacity-40 animate-float" />
+        <img src={spins} alt="Спины" className="absolute top-[240px] left-[350px] w-20 h-20 opacity-40 animate-float-delay" />
+        <img src={tasks} alt="Задания" className="absolute top-[500px] left-[250px] w-16 h-16 opacity-40 animate-float" />
+        <img src={gift} alt="Подарок" className="absolute top-[800px] left-[300px] w-16 h-16 opacity-40 animate-float-delay" />
+        <img src={cherry} alt="Вишня" className="absolute top-[120px] left-[1400px] w-16 h-16 opacity-40 animate-float" />
+        <img src={diamond} alt="Бриллиант" className="absolute top-[280px] left-[1700px] w-16 h-16 opacity-40 animate-float-delay" />
+        <img src={nearName} alt="Бантик" className="absolute top-[480px] left-[1550px] w-16 h-16 opacity-40 animate-float" />
+        <img src={coin} alt="Монеты" className="absolute top-[800px] left-[1600px] w-24 h-24 opacity-40 animate-float-delay" />
       </div>
 
       <form
@@ -62,8 +75,10 @@ function RegisterPage() {
         className={`bg-white/80 backdrop-blur-lg p-8 rounded-3xl shadow-xl w-full max-w-md border border-pink-200 ${error ? 'animate-shake' : 'animate-fade-in-up'}`}
       >
         <div className="text-center mb-8">
-          <div className="text-5xl mb-2 animate-bounce-slow">🎀</div>
-          <h1 className="text-3xl font-extrabold text-pink-500">Hello Win</h1>
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <img src={nearName} alt="Логотип" className="w-12 h-12" />
+            <h1 className="text-3xl font-extrabold text-pink-500">Hello Win</h1>
+          </div>
           <p className="text-pink-400 mt-1">Регистрация</p>
         </div>
 
@@ -101,9 +116,13 @@ function RegisterPage() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-pink-400 hover:text-pink-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2"
             >
-              {showPassword ? '🙈' : '👁️'}
+              <img
+                src={showPassword ? hidePasswordIcon : showPasswordIcon}
+                alt={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
+                className="w-10 h-10"
+              />
             </button>
           </div>
         </div>
@@ -123,9 +142,13 @@ function RegisterPage() {
             <button
               type="button"
               onClick={() => setShowPasswordConfirm(!showPasswordConfirm)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-pink-400 hover:text-pink-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2"
             >
-              {showPasswordConfirm ? '🙈' : '👁️'}
+              <img
+                src={showPasswordConfirm ? hidePasswordIcon : showPasswordIcon}
+                alt={showPasswordConfirm ? 'Скрыть пароль' : 'Показать пароль'}
+                className="w-10 h-10"
+              />
             </button>
           </div>
         </div>

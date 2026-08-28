@@ -3,6 +3,7 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
+import SlotPage from './pages/SlotPage';
 
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem('access_token');
@@ -24,6 +25,14 @@ function App() {
           element={
             <ProtectedRoute>
               <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/slot"
+          element={
+            <ProtectedRoute>
+              <SlotPage />
             </ProtectedRoute>
           }
         />
