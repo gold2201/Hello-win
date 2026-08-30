@@ -95,7 +95,7 @@ function RegisterPage() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className="w-full border border-pink-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-pink-50/50 text-gray-800"
-            placeholder="Придумай ник"
+            placeholder="Главное чтобы не Кирилл Комок"
             required
             autoFocus
           />
@@ -109,7 +109,7 @@ function RegisterPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full border border-pink-200 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-pink-50/50 text-gray-800 pr-12"
-              placeholder="Минимум 8 символов"
+              placeholder="Хомяк следит за паролем"
               required
               minLength={8}
             />

@@ -97,7 +97,7 @@ function ProfilePage() {
             <img src={nearName} alt="Логотип" className="w-14 h-14" />
             <div>
               <h1 className="text-3xl font-extrabold text-pink-500">Привет, {profile.username}!</h1>
-              <p className="text-pink-400">Добро пожаловать в Hello Win</p>
+              <p className="text-pink-400">Начинаем наше лудоприключение в Hello Win</p>
             </div>
           </div>
           <button
@@ -113,7 +113,7 @@ function ProfilePage() {
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center shadow-md border border-pink-100">
             <img src={coin} alt="Монеты" className="w-24 h-24 mx-auto mb-2" />
             <div className="text-3xl font-bold text-pink-500">{profile.balance}</div>
-            <div className="text-pink-400">Монет</div>
+            <div className="text-pink-400">HelloCoin</div>
           </div>
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center shadow-md border border-pink-100">
             <img src={spins} alt="Спины" className="w-24 h-24 mx-auto mb-2" />
@@ -129,7 +129,7 @@ function ProfilePage() {
             className="bg-pink-500 hover:bg-pink-600 text-white py-4 rounded-2xl font-bold transition shadow-md hover:scale-105 text-center flex flex-col items-center gap-2"
           >
             <img src={spins} alt="Играть" className="w-12 h-12" />
-            Играть
+            Депать
           </Link>
           <Link
             to="/gifts"
@@ -143,7 +143,7 @@ function ProfilePage() {
             className="bg-pink-500 hover:bg-pink-600 text-white py-4 rounded-2xl font-bold transition shadow-md hover:scale-105 text-center flex flex-col items-center gap-2"
           >
             <img src={tasks} alt="Задания" className="w-12 h-12" />
-            Задания
+            Бесплатные додепы
           </Link>
         </div>
 

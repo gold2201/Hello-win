@@ -297,7 +297,7 @@ function SlotPage() {
               <img src={coinIcon} alt="Монеты" className="w-24 h-24" />
               <div>
                 <div className="text-3xl font-bold text-pink-500">{balance}</div>
-                <div className="text-pink-400 text-base">Монет</div>
+                <div className="text-pink-400 text-base">HelloCoin</div>
               </div>
             </div>
             <div className="text-center bg-white/50 rounded-2xl px-5 py-2 backdrop-blur-sm flex items-center gap-2">
@@ -351,15 +351,15 @@ function SlotPage() {
               className="block bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-md border border-pink-100 hover:-translate-y-1 hover:shadow-xl transition-all"
             >
               <img src={tasksIcon} alt="Задания" className="w-20 h-20 mb-2" />
-              <h3 className="text-xl font-bold text-pink-500">Закончились монеты?</h3>
-              <p className="text-base text-gray-600">Выполни задания и получи ещё!</p>
+              <h3 className="text-xl font-bold text-pink-500">Закончился деп?</h3>
+              <p className="text-base text-gray-600">Выполни задания и получи автододеп!</p>
             </Link>
             <Link
               to="/gifts"
               className="block bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-md border border-pink-100 hover:-translate-y-1 hover:shadow-xl transition-all"
             >
               <img src={giftIcon} alt="Подарки" className="w-20 h-20 mb-2" />
-              <h3 className="text-xl font-bold text-pink-500">Накопил спины?</h3>
+              <h3 className="text-xl font-bold text-pink-500">Накопил спины или HelloCoin?</h3>
               <p className="text-base text-gray-600">Забери свой подарок!</p>
             </Link>
 
@@ -371,16 +371,17 @@ function SlotPage() {
               >
                 <span className="text-xl font-bold text-pink-500 flex items-center gap-2">
                   <img src={bookIcon} alt="Книга" className="w-20 h-20" />
-                  Правила игры
+                  Правила хомячьего слота
                 </span>
                 <span className="text-pink-500 text-2xl">{showRules ? '−' : '+'}</span>
               </button>
               {showRules && (
                 <div className="mt-3 text-base text-gray-600 space-y-2 leading-relaxed">
+                  <p>ДЕПАЙ! Ладно, на самом деле:</p>
                   <p>Собирай 2, 3 или 4 одинаковых символа в ряд или столбец.</p>
                   <p>2 в ряд — возврат 0.5x ставки.</p>
-                  <p>3 в ряд — множитель зависит от хомяка (2x–7x).</p>
-                  <p>4 в ряд — это крупный выигрыш (8x–30x)!</p>
+                  <p>3 в ряд — это средний выигрыш, множитель зависит от хомяка (2x–7x).</p>
+                  <p>4 в ряд — это крупный выигрыш, можешь еще больше депать (8x–30x)!</p>
                 </div>
               )}
             </div>
@@ -464,7 +465,7 @@ function SlotPage() {
           <div>
             {lastWins.length > 0 && (
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-md border border-pink-100">
-                <h2 className="text-xl font-bold text-pink-500 mb-4">Крупные выигрыши</h2>
+                <h2 className="text-xl font-bold text-pink-500 mb-4">Топ заносов!</h2>
                 <div className="space-y-3">
                   {lastWins.map((spin) => (
                     <div key={spin.id} className="flex justify-between items-center text-base">
