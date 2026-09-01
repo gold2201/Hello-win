@@ -24,7 +24,7 @@ class GiftListView(APIView):
     )
     def get(self, request):
         gifts = Gift.objects.filter(user=request.user)
-        serializer = GiftReadSerializer(gifts, many=True)
+        serializer = GiftReadSerializer(gifts, many=True, context={"request": request})
         return Response(serializer.data)
 
 

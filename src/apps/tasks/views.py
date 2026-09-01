@@ -32,6 +32,15 @@ class TaskListView(APIView):
         return Response(serializer.data)
 
 
+class UserTaskRequestListView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user_requests = TaskRequest.objects.filter(user=request.user)
+        serializer = TaskRequestReadSerializer(user_requests, many=True)
+        return Response(serializer.data)
+
+
 class TaskRequestCreateView(APIView):
     permission_classes = [IsAuthenticated]
 

@@ -19,6 +19,13 @@ class Gift(BaseActiveModel):
     )
     quantity = models.PositiveIntegerField(default=0, verbose_name="Количество доступных")
 
+    image = models.ImageField(
+        upload_to="gifts/",
+        null=True,
+        blank=True,
+        verbose_name="Картинка подарка",
+    )
+
     class Meta:
         verbose_name = "Подарок"
         verbose_name_plural = "Подарки"

@@ -5,6 +5,7 @@ from src.apps.tasks.views import (
     AdminTaskRequestProcessView,
     TaskListView,
     TaskRequestCreateView,
+    UserTaskRequestListView,
 )
 
 urlpatterns = [
@@ -16,4 +17,5 @@ urlpatterns = [
         AdminTaskRequestProcessView.as_view(),
         name="admin_task_request_process",
     ),
+    path("my-requests/", UserTaskRequestListView.as_view(), name="user_task_request_list"),
 ]
