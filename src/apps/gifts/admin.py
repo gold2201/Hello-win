@@ -23,6 +23,30 @@ class GiftAdmin(admin.ModelAdmin):
         "is_active",
     )
     readonly_fields = ("created_at", "updated_at")
+    fieldsets = (
+        (
+            None,
+            {
+                "fields": (
+                    "user",
+                    "name",
+                    "description",
+                    "image",
+                    "price",
+                    "required_spins",
+                    "quantity",
+                    "is_active",
+                )
+            },
+        ),
+        (
+            "Даты",
+            {
+                "fields": ("created_at", "updated_at"),
+                "classes": ("collapse",),
+            },
+        ),
+    )
 
 
 @admin.register(GiftPurchase)

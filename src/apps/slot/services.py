@@ -15,14 +15,33 @@ class SymbolConfig(TypedDict):
 
 
 SYMBOLS: list[SymbolConfig] = [
-    {"symbol": "🍒", "weight": 30, "multipliers": {3: Decimal("2.0"), 4: Decimal("8.0")}},
-    {"symbol": "🍋", "weight": 25, "multipliers": {3: Decimal("2.5"), 4: Decimal("10.0")}},
-    {"symbol": "🔔", "weight": 20, "multipliers": {3: Decimal("3.0"), 4: Decimal("12.0")}},
-    {"symbol": "💎", "weight": 15, "multipliers": {3: Decimal("5.0"), 4: Decimal("20.0")}},
-    {"symbol": "7️", "weight": 10, "multipliers": {3: Decimal("7.0"), 4: Decimal("30.0")}},
+    {
+        "symbol": "🍒",
+        "weight": 30,
+        "multipliers": {2: Decimal("0.05"), 3: Decimal("0.4"), 4: Decimal("1.5")},
+    },
+    {
+        "symbol": "🍋",
+        "weight": 25,
+        "multipliers": {2: Decimal("0.10"), 3: Decimal("0.8"), 4: Decimal("2.0")},
+    },
+    {
+        "symbol": "🔔",
+        "weight": 20,
+        "multipliers": {2: Decimal("0.20"), 3: Decimal("1.0"), 4: Decimal("4.0")},
+    },
+    {
+        "symbol": "💎",
+        "weight": 15,
+        "multipliers": {2: Decimal("0.30"), 3: Decimal("1.2"), 4: Decimal("8.0")},
+    },
+    {
+        "symbol": "7️",
+        "weight": 10,
+        "multipliers": {2: Decimal("0.50"), 3: Decimal("2.0"), 4: Decimal("15.0")},
+    },
 ]
 
-TWO_IN_ROW_MULTIPLIER = Decimal("0.5")
 BET_OPTIONS = [1, 5, 10, 25, 50]
 
 
@@ -33,8 +52,6 @@ def generate_matrix() -> list[list[str]]:
 
 
 def _get_multiplier(symbol: str, length: int) -> Decimal:
-    if length == 2:
-        return TWO_IN_ROW_MULTIPLIER
     for item in SYMBOLS:
         if item["symbol"] == symbol:
             return item["multipliers"].get(length, Decimal("0"))
