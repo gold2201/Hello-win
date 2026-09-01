@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import SlotPage from './pages/SlotPage';
 import GiftsPage from './pages/GiftsPage';
+import TaskClientPage from './pages/TaskClientPage';
 
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem('access_token');
@@ -42,6 +43,14 @@ function App() {
           element={
             <ProtectedRoute>
               <GiftsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/tasks"
+          element={
+            <ProtectedRoute>
+              <TaskClientPage />
             </ProtectedRoute>
           }
         />

@@ -203,7 +203,7 @@ function GiftsPage() {
               <img src={spins} alt="Спины" className="w-14 h-14" />
               <div>
                 <div className="text-2xl font-bold text-pink-500">{totalSpins}</div>
-                <div className="text-pink-400">Спинов</div>
+                <div className="text-pink-400">Спины</div>
               </div>
             </div>
           </div>
@@ -227,7 +227,7 @@ function GiftsPage() {
         )}
 
         {sortedGifts.length === 0 ? (
-          <p className="text-center text-pink-400 text-xl">Пока нет подарков</p>
+          <p className="text-center text-pink-400 text-xl">Ваш админ пока не добавил подарки</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {sortedGifts.map((gift) => {

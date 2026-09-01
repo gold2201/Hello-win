@@ -121,7 +121,6 @@ function SlotPage() {
     }
   }, [soundOn]);
 
-  // Воспроизведение случайного звука окончания вращения
   const playRandomSpinSound = () => {
     if (!soundOn) return;
     const randomIndex = Math.floor(Math.random() * spinSounds.length);
@@ -130,7 +129,6 @@ function SlotPage() {
     audio.play().catch(() => {});
   };
 
-  // Загрузка начальных данных
   useEffect(() => {
     const fetchState = async () => {
       try {
@@ -142,7 +140,6 @@ function SlotPage() {
         setBalance(stateResponse.data.balance);
         setTotalSpins(stateResponse.data.total_spins);
 
-        // Топ-5 крупных выигрышей
         const wins = [...profileResponse.data.spin_history]
           .filter((spin) => spin.win_amount > 0)
           .sort((a, b) => b.win_amount - a.win_amount)
@@ -177,14 +174,12 @@ function SlotPage() {
     setShowConfetti(false);
     setBigWin(false);
 
-    // Проигрываем основной звук вращения
     if (soundOn) {
       const mainSpinAudio = new Audio(mainSpinMusic);
       mainSpinAudio.volume = 0.9;
       mainSpinAudio.play().catch(() => {});
     }
 
-    // Запускаем изменение всех столбцов
     const intervals = [0, 1, 2, 3].map((colIdx) => {
       return setInterval(() => {
         setColumns((prev) => {
@@ -198,9 +193,7 @@ function SlotPage() {
     try {
       const response = await api.post('/slot/spin/', { bet });
 
-      // Общий таймер на 3300 мс
       setTimeout(() => {
-        // Останавливаем все интервалы сразу
         intervals.forEach(clearInterval);
 
         const finalMatrix = response.data.matrix;
@@ -231,9 +224,7 @@ function SlotPage() {
           setTimeout(() => setShowConfetti(false), 3000);
         }
 
-        // Проигрываем случайный звук после остановки
         playRandomSpinSound();
-
         setSpinning(false);
       }, 3300);
     } catch (err) {
@@ -304,7 +295,7 @@ function SlotPage() {
               <img src={spinsIcon} alt="Спины" className="w-16 h-16" />
               <div>
                 <div className="text-3xl font-bold text-pink-500">{totalSpins}</div>
-                <div className="text-pink-400 text-base">Спинов</div>
+                <div className="text-pink-400 text-base">Спины</div>
               </div>
             </div>
             <button
@@ -362,7 +353,6 @@ function SlotPage() {
               <h3 className="text-xl font-bold text-pink-500">Накопил спины или HelloCoin?</h3>
               <p className="text-base text-gray-600">Забери свой подарок!</p>
             </Link>
-
             {/* Правила игры */}
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-md border border-pink-100">
               <button
@@ -377,11 +367,30 @@ function SlotPage() {
               </button>
               {showRules && (
                 <div className="mt-3 text-base text-gray-600 space-y-2 leading-relaxed">
-                  <p>ДЕПАЙ! Ладно, на самом деле:</p>
-                  <p>Собирай 2, 3 или 4 одинаковых символа в ряд или столбец.</p>
-                  <p>2 в ряд — возврат 0.5x ставки.</p>
-                  <p>3 в ряд — это средний выигрыш, множитель зависит от хомяка (2x–7x).</p>
-                  <p>4 в ряд — это крупный выигрыш, можешь еще больше депать (8x–30x)!</p>
+                  <p className="font-semibold text-pink-500">ДЕПАЙ! Собирай 2, 3 или 4 одинаковых хомяка в ряд или столбец.</p>
+                  <div className="space-y-1">
+                    <p className="flex items-center gap-2">
+                      <img src={cherry} alt="Вишня" className="w-10 h-10" />
+                      : 2 — 0.05x, 3 — 0.4x, 4 — 1.5x
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <img src={lemon} alt="Лимон" className="w-10 h-10" />
+                       : 2 — 0.10x, 3 — 0.8x, 4 — 2.0x
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <img src={bell} alt="Колокольчик" className="w-10 h-10" />
+                       : 2 — 0.20x, 3 — 1.0x, 4 — 4.0x
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <img src={diamond} alt="Алмаз" className="w-10 h-10" />
+                       : 2 — 0.30x, 3 — 1.2x, 4 — 8.0x
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <img src={seven} alt="Семёрка" className="w-10 h-10" />
+                       : 2 — 0.50x, 3 — 2.0x, 4 — 15.0x
+                    </p>
+                  </div>
+                  <p className="italic">Чем реже хомяк, тем жирнее хомяк!</p>
                 </div>
               )}
             </div>
