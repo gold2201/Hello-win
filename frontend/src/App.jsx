@@ -6,6 +6,7 @@ import ProfilePage from './pages/ProfilePage';
 import SlotPage from './pages/SlotPage';
 import GiftsPage from './pages/GiftsPage';
 import TaskClientPage from './pages/TaskClientPage';
+import MiniGamePage from "./pages/MiniGamePage.jsx";
 
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem('access_token');
@@ -51,6 +52,14 @@ function App() {
           element={
             <ProtectedRoute>
               <TaskClientPage />
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path="/minigame"
+          element={
+            <ProtectedRoute>
+              <MiniGamePage />
             </ProtectedRoute>
           }
         />
