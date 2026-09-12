@@ -18,31 +18,31 @@ SYMBOLS: list[SymbolConfig] = [
     {
         "symbol": "🍒",
         "weight": 30,
-        "multipliers": {2: Decimal("0.05"), 3: Decimal("0.4"), 4: Decimal("1.5")},
+        "multipliers": {2: Decimal("0.1"), 3: Decimal("0.4"), 4: Decimal("1.5")},
     },
     {
         "symbol": "🍋",
         "weight": 25,
-        "multipliers": {2: Decimal("0.10"), 3: Decimal("0.8"), 4: Decimal("2.0")},
+        "multipliers": {2: Decimal("0.2"), 3: Decimal("0.6"), 4: Decimal("2.0")},
     },
     {
         "symbol": "🔔",
         "weight": 20,
-        "multipliers": {2: Decimal("0.20"), 3: Decimal("1.0"), 4: Decimal("4.0")},
+        "multipliers": {2: Decimal("0.3"), 3: Decimal("1.2"), 4: Decimal("4.0")},
     },
     {
         "symbol": "💎",
         "weight": 15,
-        "multipliers": {2: Decimal("0.30"), 3: Decimal("1.2"), 4: Decimal("8.0")},
+        "multipliers": {2: Decimal("0.4"), 3: Decimal("1.5"), 4: Decimal("8.0")},
     },
     {
         "symbol": "7️",
         "weight": 10,
-        "multipliers": {2: Decimal("0.50"), 3: Decimal("2.0"), 4: Decimal("15.0")},
+        "multipliers": {2: Decimal("0.7"), 3: Decimal("2.0"), 4: Decimal("15.0")},
     },
 ]
 
-BET_OPTIONS = [1, 5, 10, 25, 50]
+BET_OPTIONS = [5, 10, 25, 50, 100]
 
 
 def generate_matrix() -> list[list[str]]:

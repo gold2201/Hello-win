@@ -3,13 +3,18 @@ import { useNavigate, Link } from 'react-router-dom';
 import api from '../api';
 import mainSpinMusic from '../assets/sounds/mainSpinMusic.mp3';
 import mainMusic from '../assets/sounds/mainMusic.mp3';
-import spinMusic1 from '../assets/sounds/spinMusic1.mp3';
-import spinMusic2 from '../assets/sounds/spinMusic2.mp3';
-import spinMusic3 from '../assets/sounds/spinMusic3.mp3';
-import spinMusic4 from '../assets/sounds/spinMusic4.mp3';
-import spinMusic5 from '../assets/sounds/spinMusic5.mp3';
-import spinMusic6 from '../assets/sounds/spinMusic6.mp3';
-import spinMusic7 from '../assets/sounds/spinMusic7.mp3';
+import big_win_sound1 from '../assets/sounds/big_win_sound1.mp3';
+import big_win_sound2 from '../assets/sounds/big_win_sound2.mp3';
+import big_win_sound3 from '../assets/sounds/big_win_sound3.mp3';
+import big_win_sound4 from '../assets/sounds/big_win_sound4.mp3';
+import less_win_sound1 from '../assets/sounds/less_win_sound1.mp3';
+import less_win_sound2 from '../assets/sounds/less_win_sound2.mp3';
+import less_win_sound3 from '../assets/sounds/less_win_sound3.mp3';
+import less_win_sound4 from '../assets/sounds/less_win_sound4.mp3';
+import middle_win_sound1 from '../assets/sounds/middle_win_sound1.mp3';
+import middle_win_sound2 from '../assets/sounds/middle_win_sound2.mp3';
+import middle_win_sound3 from '../assets/sounds/middle_win_sound3.mp3';
+import middle_win_sound4 from '../assets/sounds/middle_win_sound4.mp3';
 
 import cherry from '../assets/slot/cherry.png';
 import lemon from '../assets/slot/lemon.png';
@@ -97,7 +102,10 @@ function SlotPage() {
   const [lastWins, setLastWins] = useState([]);
   const navigate = useNavigate();
   const mainAudioRef = useRef(null);
-  const spinSounds = [spinMusic1, spinMusic2, spinMusic3, spinMusic4, spinMusic5, spinMusic6, spinMusic7];
+
+  const bigWinSounds = [big_win_sound1, big_win_sound2, big_win_sound3, big_win_sound4];
+  const middleWinSounds = [middle_win_sound1, middle_win_sound2, middle_win_sound3, middle_win_sound4];
+  const lessWinSounds = [less_win_sound1, less_win_sound2, less_win_sound3, less_win_sound4];
 
   // Фоновая музыка
   useEffect(() => {
@@ -121,12 +129,22 @@ function SlotPage() {
     }
   }, [soundOn]);
 
-  const playRandomSpinSound = () => {
+  const playRandomFromArray = (sounds) => {
     if (!soundOn) return;
-    const randomIndex = Math.floor(Math.random() * spinSounds.length);
-    const audio = new Audio(spinSounds[randomIndex]);
+    const randomIndex = Math.floor(Math.random() * sounds.length);
+    const audio = new Audio(sounds[randomIndex]);
     audio.volume = 1;
     audio.play().catch(() => {});
+  };
+
+  const playWinSound = (winAmountValue) => {
+    if (winAmountValue < bet) {
+      playRandomFromArray(lessWinSounds);
+    } else if (winAmountValue <= bet * 2) {
+      playRandomFromArray(middleWinSounds);
+    } else {
+      playRandomFromArray(bigWinSounds);
+    }
   };
 
   useEffect(() => {
@@ -167,6 +185,12 @@ function SlotPage() {
 
   const handleSpin = async () => {
     if (spinning) return;
+
+    if (balance < bet) {
+      setError('Недостаточно средств для ставки');
+      return;
+    }
+
     setSpinning(true);
     setError('');
     setWinAmount(null);
@@ -176,7 +200,7 @@ function SlotPage() {
 
     if (soundOn) {
       const mainSpinAudio = new Audio(mainSpinMusic);
-      mainSpinAudio.volume = 0.9;
+      mainSpinAudio.volume = 0.8;
       mainSpinAudio.play().catch(() => {});
     }
 
@@ -224,7 +248,7 @@ function SlotPage() {
           setTimeout(() => setShowConfetti(false), 3000);
         }
 
-        playRandomSpinSound();
+        playWinSound(response.data.win_amount);
         setSpinning(false);
       }, 3300);
     } catch (err) {
@@ -371,23 +395,23 @@ function SlotPage() {
                   <div className="space-y-1">
                     <p className="flex items-center gap-2">
                       <img src={cherry} alt="Вишня" className="w-10 h-10" />
-                      : 2 — 0.05x, 3 — 0.4x, 4 — 1.5x
+                      : 2 — 0.1x, 3 — 0.5x, 4 — 1.5x
                     </p>
                     <p className="flex items-center gap-2">
                       <img src={lemon} alt="Лимон" className="w-10 h-10" />
-                       : 2 — 0.10x, 3 — 0.8x, 4 — 2.0x
+                       : 2 — 0.2x, 3 — 0.8x, 4 — 2.0x
                     </p>
                     <p className="flex items-center gap-2">
                       <img src={bell} alt="Колокольчик" className="w-10 h-10" />
-                       : 2 — 0.20x, 3 — 1.0x, 4 — 4.0x
+                       : 2 — 0.3x, 3 — 1.0x, 4 — 4.0x
                     </p>
                     <p className="flex items-center gap-2">
                       <img src={diamond} alt="Алмаз" className="w-10 h-10" />
-                       : 2 — 0.30x, 3 — 1.2x, 4 — 8.0x
+                       : 2 — 0.40x, 3 — 1.5x, 4 — 8.0x
                     </p>
                     <p className="flex items-center gap-2">
                       <img src={seven} alt="Семёрка" className="w-10 h-10" />
-                       : 2 — 0.50x, 3 — 2.0x, 4 — 15.0x
+                       : 2 — 0.70x, 3 — 2.0x, 4 — 15.0x
                     </p>
                   </div>
                   <p className="italic">Чем реже хомяк, тем жирнее хомяк!</p>
