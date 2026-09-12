@@ -130,3 +130,29 @@ body {
 .animate-big-win {
   animation: big-win-glow 1s ease-in-out infinite;
 }
+
+/* Прыжок картинки */
+@keyframes jump-once {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.animate-jump-once {
+  animation: jump-once 0.3s ease-out;
+}
+
+/* Взлетающие слова */
+@keyframes float-up {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100px); opacity: 0; }
+}
+
+.tap-text {
+  position: fixed;
+  font-weight: bold;
+  color: #ff69b4;
+  animation: float-up 0.8s ease-out forwards;
+  pointer-events: none;
+  z-index: 60;
+}

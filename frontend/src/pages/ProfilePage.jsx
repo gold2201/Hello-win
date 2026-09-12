@@ -14,7 +14,7 @@ import bell from '../assets/slot/bell.png';
 import diamond from '../assets/slot/diamond.png';
 import seven from '../assets/slot/seven.png';
 import bookIcon from '../assets/homePageImage/book.png';
-
+import img20 from '../assets/minigamePage/20_img.png'; // новая картинка
 
 function ProfilePage() {
   const [profile, setProfile] = useState(null);
@@ -75,6 +75,7 @@ function ProfilePage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-pink-100 via-white to-purple-100">
+      {/* Фоновые плавающие изображения */}
       <div className="pointer-events-none absolute inset-0 select-none">
         <img src={coin} alt="Монеты" className="absolute top-[120px] left-[100px] w-24 h-24 opacity-40 animate-float" />
         <img src={spins} alt="Спины" className="absolute top-[240px] left-[300px] w-20 h-20 opacity-40 animate-float-delay" />
@@ -121,6 +122,18 @@ function ProfilePage() {
             <div className="text-pink-400">Спинов</div>
           </div>
         </div>
+
+        {/* Новая кнопка-баннер для мини-игры */}
+        <Link
+          to="/minigame"
+          className="block bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all mb-8 flex items-center gap-4"
+        >
+          <img src={img20} alt="Мини-игра" className="w-16 h-16 object-contain" />
+          <div className="text-left">
+            <h3 className="text-xl font-bold">Фистилка</h3>
+            <p className="text-sm opacity-90">Отфисти хомяка!</p>
+          </div>
+        </Link>
 
         {/* Кнопки навигации */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
@@ -176,7 +189,6 @@ function ProfilePage() {
                   </tbody>
                 </table>
               </div>
-              {/* Пагинация */}
               {totalPages > 1 && (
                 <div className="flex justify-center gap-2 mt-4">
                   <button
